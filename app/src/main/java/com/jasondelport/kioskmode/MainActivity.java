@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         showNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                removeBlockingViews();
+
                 View decorView = getWindow().getDecorView();
                 int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void disablePullNotificationTouch() {
+    private void addBlockingViews() {
 
         try {
             WindowManager manager = ((WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
@@ -95,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+        removeBlockingViews();
+        super.onPause();
+    }
+
+
+    private void removeBlockingViews() {
         try {
             WindowManager manager = ((WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
             if (topView != null) {
@@ -106,51 +115,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             // handle error
         }
-        super.onPause();
     }
-
-    /*
-    private void pinApp() {
-        // adb shell dpm set-device-owner com.jasondelport.kioskmode/.MainActivity
-        Error: Unknown admin: ComponentInfo{com.jasondelport.kioskmode/com.jasondelport.kioskmode.MainActivity}
-        localhost:KioskMode jasondelport$
-
-        dpm set-active-admin: Sets the given component as active admin for an existing user.
-
-        dpm set-device-owner: Sets the given component as active admin, and its package as device owner.
-
-        dpm set-profile-owner: Sets the given component as active admin and profile owner for an existing user.
-
-        dpm remove-active-admin: Disables an active admin, the admin must have declared android:testOnly in the application in its manifest. This will also remove device and profile owners
-
-
-
-
-        DevicePolicyManager myDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
-        ComponentName mDeviceAdminSample = new ComponentName(this, MainActivity.class);
-
-        if (myDevicePolicyManager.isDeviceOwnerApp(this.getPackageName())) {
-            String[] packages = {this.getPackageName()};
-            myDevicePolicyManager.setLockTaskPackages(mDeviceAdminSample, packages);
-        } else {
-            Log.d("APP", "not a device owner");
-            // Not a device owner - prompt user or show error
-        }
-
-        if (myDevicePolicyManager.isLockTaskPermitted(this.getPackageName())) {
-            // Lock allowed
-            startLockTask();
-        } else {
-            Log.d("APP", "lock not allowed");
-            // Lock not allowed - show error or something useful here
-        }
-    }
-    */
 
     @Override
     protected void onResume() {
         super.onResume();
-        disablePullNotificationTouch();
+
+        addBlockingViews();
 
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
