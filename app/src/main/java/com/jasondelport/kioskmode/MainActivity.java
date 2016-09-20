@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             bottomView = new CustomViewGroup(this);
             ViewGroup.LayoutParams layoutParams1 = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     50);
-            bottomView.setBackgroundColor(getColor(android.R.color.holo_blue_light));
+            //bottomView.setBackgroundColor(getColor(android.R.color.holo_blue_light));
             bottomView.setLayoutParams(layoutParams1);
             manager.addView(bottomView, localLayoutParams);
             localLayoutParams.height = (int) (25 * getResources().getDisplayMetrics().scaledDensity);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             topView = new CustomViewGroup(this);
             ViewGroup.LayoutParams layoutParams2 = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     25);
-            topView.setBackgroundColor(getColor(android.R.color.holo_blue_light));
+            //topView.setBackgroundColor(getColor(android.R.color.holo_blue_light));
             topView.setLayoutParams(layoutParams2);
             manager.addView(topView, localLayoutParams);
         } catch (Exception e) {
