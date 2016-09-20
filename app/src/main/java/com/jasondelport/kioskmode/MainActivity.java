@@ -38,6 +38,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button hideNavigation = (Button) findViewById(R.id.button_hide_navigation);
+        hideNavigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                addBlockingViews();
+
+                View decorView = getWindow().getDecorView();
+                int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                decorView.setSystemUiVisibility(uiOptions);
+            }
+        });
+
         Button setHome = (Button) findViewById(R.id.button_set_home);
         setHome.setOnClickListener(new View.OnClickListener() {
             @Override

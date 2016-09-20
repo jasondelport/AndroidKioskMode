@@ -21,10 +21,19 @@
         android:text="Show Navigation"/>
 
     <Button
-        android:id="@+id/button_set_home"
+        android:id="@+id/button_hide_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_show_navigation"
+        android:layout_margin="15dp"
+        android:padding="10dp"
+        android:text="Hide Navigation"/>
+
+    <Button
+        android:id="@+id/button_set_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_hide_navigation"
         android:layout_margin="15dp"
         android:padding="10dp"
         android:text="Set Home App"/>
@@ -42,4 +51,5 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"/>
+
 </RelativeLayout>
